@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Coordinates, Geolocation } from '@ionic-native/geolocation';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,14 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  location: Coordinates;
 
+  constructor(private geolocation: Geolocation, private platform: Platform) {}
+
+  async getLocation() {
+    await this.platform.ready();
+    const { coords } = await this.geolocation.getCurrentPosition();
+    this.location = coords;
   }
 
 }

@@ -7,8 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <button (click)="getLocation()" ion-button mode="ios" round>Get geolocation</button>
+  <div *ngIf="location">
+    <h2>Your location is:</h2>
+    <p>Lon: {{ location.longitude }}</p>
+    <p>Lat: {{ location.latitude }}</p>
+  </div>
 </ion-content>
